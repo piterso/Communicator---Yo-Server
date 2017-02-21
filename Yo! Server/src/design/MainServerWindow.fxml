@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ServerController">
+   <children>
+      <ImageView fitHeight="76.0" fitWidth="1318.0" layoutX="3.0" layoutY="29.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-518.0" AnchorPane.topAnchor="29.0">
+         <image>
+            <Image url="@../../images/MainBar.png" />
+         </image>
+      </ImageView>
+      <MenuBar layoutX="71.0" layoutY="14.0" maxHeight="25.0" prefHeight="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#saveLogToFile" text="Save log" />
+                  <MenuItem mnemonicParsing="false" onAction="#saveErrorToFile" text="Save error" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+              <MenuItem mnemonicParsing="false" onAction="#closeProgram" text="Close" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Server">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#showServerStatus" text="Status" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#startServer" text="Start" />
+                  <MenuItem mnemonicParsing="false" onAction="#stopServer" text="Stop" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Console">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Terminal" />
+                  <MenuItem mnemonicParsing="false" text="System monitor" />
+              </items>
+            </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#cleanLogArea" text="Clean log" />
+                  <MenuItem mnemonicParsing="false" onAction="#cleanErrorArea" text="Clean error" />
+                  <MenuItem mnemonicParsing="false" onAction="#cleanCmdArea" text="Clean cmd" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+              <MenuItem mnemonicParsing="false" onAction="#openSettings" text="Settings" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#showAbout" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <SplitPane layoutX="70.0" layoutY="106.0" orientation="VERTICAL" prefHeight="495.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="106.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TabPane layoutX="44.0" layoutY="14.0" prefHeight="492.0" prefWidth="798.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <tabs>
+                      <Tab text="Log">
+                           <content>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <TextArea fx:id="logArea" layoutX="86.0" layoutY="59.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                      <Tab text="Error">
+                           <content>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <TextArea fx:id="errorArea" layoutX="73.0" layoutY="55.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+                        <Tab text="Connections">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="tableID" layoutX="24.0" layoutY="30.0" prefHeight="200.0" prefWidth="200.0" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                                      <columns>
+                                        <TableColumn fx:id="remoteAddress" prefWidth="172.0" text="Remote IP Address" />
+                                        <TableColumn fx:id="localAddress" minWidth="0.0" prefWidth="172.0" text="Local IP Address" />
+                                          <TableColumn fx:id="remotePortNumber" prefWidth="194.0" text="Remote Port Number" />
+                                          <TableColumn fx:id="localPortNumber" prefWidth="219.0" text="Local Port Number" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                        <Tab text="Command Line">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <TextArea fx:id="commandArea" editable="false" layoutX="131.0" layoutY="14.0" prefHeight="459.0" prefWidth="798.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+                                    <TextField fx:id="command" layoutX="20.0" layoutY="413.0" onAction="#onEnter" prefHeight="31.0" prefWidth="758.0" promptText="Command" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <Button layoutX="644.0" layoutY="57.0" mnemonicParsing="false" onAction="#startServer" text="START" AnchorPane.rightAnchor="95.0" />
+      <Label fx:id="serverStatus" layoutX="481.0" layoutY="55.0" text="Stopped" textFill="#7adceb" AnchorPane.rightAnchor="196.0">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font></Label>
+      <Button layoutX="724.0" layoutY="57.0" mnemonicParsing="false" onAction="#stopServer" text="STOP" AnchorPane.rightAnchor="23.0" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="275.0" prefWidth="324.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdministratorLogin">
+   <children>
+      <HBox alignment="CENTER_LEFT" blendMode="SRC_ATOP" layoutX="19.0" layoutY="15.0" prefHeight="40.0" prefWidth="250.0">
+         <children>
+            <Label fx:id="loginStatus">
+               <HBox.margin>
+                  <Insets left="27.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Button layoutX="221.0" layoutY="207.0" mnemonicParsing="false" onAction="#login" text="Login">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <TextField fx:id="username" layoutX="64.0" layoutY="110.0" promptText="User Name">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="password" layoutX="65.0" layoutY="155.0" promptText="Password">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </PasswordField>
+      <Separator layoutX="7.0" layoutY="86.0" prefWidth="200.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="13.0" />
+      <Label layoutX="11.0" layoutY="70.0" text="Administrator credentials" />
+   </children>
+</AnchorPane>
