@@ -2,9 +2,13 @@ package transfer;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-
+/**
+ * Class to send specific objects to specific OutputStream
+ * @author piter
+ *
+ */
 public class Sender {
-	ObjectOutputStream out;
+	private ObjectOutputStream out;
 	
 	public Sender(ObjectOutputStream out) {
 		this.out = out;

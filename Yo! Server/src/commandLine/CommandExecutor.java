@@ -1,31 +1,32 @@
 package commandLine;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class CommandExecutor {
-	private StringBuffer outcome;
-	private Process p;
-	
-	public CommandExecutor() {
-		outcome = new StringBuffer();
-	}
-	
+
 	public String execute(String command) {
+		StringBuffer outcome = new StringBuffer();
+		Runtime runtime = Runtime.getRuntime();
+		
 		try {
-			p = Runtime.getRuntime().exec(command);
-			p.waitFor();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			Process process = runtime.exec(command);
+			process.waitFor();
 			
+			BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			String line = "";
-            while ((line = reader.readLine()) != null) {
+			while ((line = reader.readLine()) != null) {
 				outcome.append(line + "\n");
 			}
-
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+
 		return outcome.toString();
 	}
 }
+
